@@ -22,13 +22,13 @@ main.cpp - calls VGraphServer::genRollingMedians to generate rolling medians fro
 
 Run Program
 
-Script run.sh contains g++ command to build executable medianDegree.out if it is not already there. If medianDegree.out exists, no compilation is performed. In case code is revised and rebuild is necessary, please type in "g++ src/main.cpp src/VenmoGraph.cpp -o medianDegree.out" directly in commandline or delete medianDegree.out before run run.sh to do the rebuild. 
+Script run.sh contains g++ command to build executable medianDegree.out if it is not already there. If medianDegree.out exists, no compilation is performed. In case code is revised and rebuild is necessary, please type in "g++ src/main.cpp src/VenmoGraph.cpp -o medianDegree.out" directly in commandline or delete medianDegree.out before running run.sh to do the rebuild. 
 
 --------------------------------------------------------------------------------------------------------------
 
 Data Structure
 
-VGraphEdge is sorted by its timestamp. This helps maintain a time window, check incoming edge and evict old edges. VGraphVertex is sorted by its degree. This helps quickly find the medians. Binary search tree is ideal for this incremental sort. When new transaction comes in, insert it into the right position of the tree. STL set is used as a binary search tree. STL map is used to help quickly find VGraphVertex based on target/actor name.
+VGraphEdge is sorted by its timestamp. This helps maintain a time window, check incoming edge and evict old edges. VGraphVertex is sorted by its degree. This helps quickly find the medians. Binary search tree is ideal for this incremental sort. When new transaction comes in, no need to re-sort the entire tree as it is sorted before, just insert the new VGraphEdge or updated VGraphVertex into the right position of the tree. STL set is used as a binary search tree. STL map is used to help quickly find VGraphVertex based on target/actor name.
 
 
  
